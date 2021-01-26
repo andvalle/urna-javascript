@@ -14,7 +14,7 @@ function iniciarEtapa () {
   let numeroHtml= ''; 
   let etapa = etapas[etapasAtual];
    numero='';
-  let Votobranco=false;
+  let votoBranco=false;
 
   for (let i=0; i<etapa.numeros; i++){
 
@@ -98,14 +98,24 @@ function corrige(){
 }
 function confirma(){
     let etapa=etapas[etapasAtual];
+    let votoConfirmado= false;
 
     if(votoBranco===true){
+        votoConfirmado=true;
         console.log("confirmando como voto em branco");
         
 
     }else if (numero.length===etapa.numeros){
+        votoConfirmado=true;
         console.log("Voto confirmado para o numero: "+numero);
-
+    }
+    if (votoConfirmado){
+        etapasAtual++;
+        if(etapas[etapasAtual] !== undefined){
+            iniciarEtapa();
+        } else {
+            console.log("FIM");
+        }
 
     }
 }
